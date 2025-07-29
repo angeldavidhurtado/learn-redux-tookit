@@ -1,9 +1,30 @@
-import { useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { readProducts } from '../redux/productsSlice'
+import { createProduct, readProducts } from '../redux/productsSlice'
 
 function Products() {
+	const newNameProduct = useRef('')
+	const handleCreateProduct = () => {
+		const valueNewNameProduct = newNameProduct.current.value
+		if (!valueNewNameProduct) return
+
+		const newProduct = {
+			id: Date.now(),
+			name: valueNewNameProduct
+		}
+
+		dispatch(createProduct(newProduct))
+
+		axios
+			.post('http://localhost:3001/products', newProduct)
+			.then(() => {
+				newNameProduct.current.value = ''
+				console.log('Nombre de producto guardado en JSON Server')
+			})
+			.catch(err => console.error(err))
+	}
+
 	const products = useSelector(state => state.products)
 	const dispatch = useDispatch()
 
@@ -18,13 +39,18 @@ function Products() {
 
 	return (
 		<>
-			<h2>Hola mundo</h2>
+			<h2>CRUD de productos</h2>
 			<ul>
 				{products.data.map(product =>
 					<li key={product.id}>
 						{product.name}
 					</li>
 				)}
+				<input
+					type="text"
+					ref={newNameProduct}
+				/>
+				<button onClick={handleCreateProduct}>Agregar producto</button>
 			</ul>
 		</>
 	)
