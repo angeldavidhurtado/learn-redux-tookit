@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { createProduct, readProducts } from '../redux/productsSlice'
+import { createProduct, readProducts, updateProduct } from '../redux/productsSlice'
 
 function Products() {
 	const [productToUpdate, setProductToUpdate] = useState({ id: null, name: null })
@@ -11,7 +11,7 @@ function Products() {
 		const valueNewNameProduct = newNameProduct.current.value
 		if (!valueNewNameProduct) return
 		const newProduct = {
-			id: Date.now(),
+			id: String(Date.now()),
 			name: valueNewNameProduct
 		}
 		dispatch(createProduct(newProduct))
@@ -19,14 +19,15 @@ function Products() {
 			.post('http://localhost:3001/products', newProduct)
 			.then(() => {
 				newNameProduct.current.value = ''
-				console.log('Nombre de producto guardado en JSON Server')
 			})
 			.catch(err => console.error(err))
 	}
 
 	const handleUpdateProduct = () => {
-		axios.
-			put(`http://localhost:3001/products/${productToUpdate.id}`, {
+		dispatch(updateProduct(productToUpdate))
+
+		axios
+			.put(`http://localhost:3001/products/${productToUpdate.id}`, {
 				name: productToUpdate.name
 			})
 			.then(() => setProductToUpdate({ id: null, name: null }))

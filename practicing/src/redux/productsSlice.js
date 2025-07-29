@@ -22,15 +22,19 @@ const productsSlice = createSlice({
 			*/
 			state.data = action.payload
 		},
-		updateProduc: (state, action) => {},
-		deleteProduc: (state, action) => {}
+		updateProduct: (state, action) => {
+			const { id, name } = action.payload
+			const product = state.data.find(product => product.id == id)
+			product.name = name
+		},
+		deleteProduct: (state, action) => {}
 	}
 })
 
 export const {
 	createProduct,
 	readProducts,
-	updateProduc,
-	deleteProduc
+	updateProduct,
+	deleteProduct
 } = productsSlice.actions
 export default productsSlice.reducer
