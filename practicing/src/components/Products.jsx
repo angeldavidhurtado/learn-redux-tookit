@@ -16,7 +16,6 @@ function Products() {
 		}
 		dispatch(createProduct(newProduct))
 
-
 		axios
 			.post('http://localhost:3001/products', newProduct)
 			.then(() => {
