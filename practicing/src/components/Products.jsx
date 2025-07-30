@@ -15,8 +15,7 @@ function Products() {
 			name: valueNewNameProduct
 		}
 		dispatch(createProduct(newProduct))
-
-		newNameProduct.current.value = ''
+		console.log(newProduct)
 
 		axios
 			.post('http://localhost:3001/products', newProduct)
