@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { createProduct, readProducts, updateProduct } from '../redux/productsSlice'
+import { createProduct, deleteProduct, readProducts, updateProduct } from '../redux/productsSlice'
 
 function Products() {
 	const [productToUpdate, setProductToUpdate] = useState({ id: null, name: null })
@@ -32,6 +32,14 @@ function Products() {
 			})
 			.then(() => setProductToUpdate({ id: null, name: null }))
 			.catch(err => console.error(err))
+	}
+
+	const handleDeleteProduct = idProduct => {
+		dispatch(deleteProduct(idProduct))
+
+		axios
+			.delete(`http://localhost:3001/products/${idProduct}`)
+			.catch(err=>console.error(err))
 	}
 
 	const products = useSelector(state => state.products)
@@ -72,7 +80,7 @@ function Products() {
 								<button onClick={() =>
 									setProductToUpdate({ id: product.id, name: product.name })
 								}>Editar</button>
-								<button>Eliminar</button>
+								<button onClick={()=>handleDeleteProduct(product.id)}>Eliminar</button>
 							</div>
 						}
 					</li>

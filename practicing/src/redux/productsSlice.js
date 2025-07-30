@@ -27,7 +27,10 @@ const productsSlice = createSlice({
 			const product = state.data.find(product => product.id == id)
 			product.name = name
 		},
-		deleteProduct: (state, action) => {}
+		deleteProduct: (state, action) => {
+			const id = action.payload
+			state.data = state.data.filter(product => product.id !== id)
+		}
 	}
 })
 
