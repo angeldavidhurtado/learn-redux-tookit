@@ -58,6 +58,12 @@ ul {
   list-style: none;
 }
 
+ul button,
+ul input,
+ul span {
+  margin: 10px 3px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
