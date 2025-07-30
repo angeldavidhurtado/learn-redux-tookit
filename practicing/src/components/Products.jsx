@@ -15,7 +15,7 @@ function Products() {
 			name: valueNewNameProduct
 		}
 		dispatch(createProduct(newProduct))
-		console.log(newProduct)
+
 
 		axios
 			.post('http://localhost:3001/products', newProduct)
