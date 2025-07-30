@@ -15,6 +15,9 @@ function Products() {
 			name: valueNewNameProduct
 		}
 		dispatch(createProduct(newProduct))
+
+		newNameProduct.current.value = ''
+
 		axios
 			.post('http://localhost:3001/products', newProduct)
 			.then(() => {
@@ -85,12 +88,12 @@ function Products() {
 						}
 					</li>
 				)}
-				<input
-					type="text"
-					ref={newNameProduct}
-				/>
-				<button onClick={handleCreateProduct}>Agregar producto</button>
 			</ul>
+			<input
+				type="text"
+				ref={newNameProduct}
+			/>
+			<button onClick={handleCreateProduct}>Agregar producto</button>
 		</>
 	)
 }
