@@ -1,10 +1,13 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createProduct, deleteProduct, updateProduct } from '../redux/productsSlice'
 
 function Products() {
 	const [productToUpdate, setProductToUpdate] = useState({ id: null, name: null })
 	const newNameProduct = useRef('')
+
+	const products = useSelector(state => state.products)
+	const dispatch = useDispatch()
 
 	const handleCreateProduct = () => {
 		const valueNewNameProduct = newNameProduct.current.value
@@ -25,9 +28,6 @@ function Products() {
 	const handleDeleteProduct = idProduct => {
 		dispatch(deleteProduct(idProduct))
 	}
-
-	const products = useSelector(state => state.products)
-	const dispatch = useDispatch()
 
 	return (
 		<>
