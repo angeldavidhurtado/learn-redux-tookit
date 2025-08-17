@@ -4,4 +4,4 @@ Aprendí Redux Toolkit. Para esto, tomé la clase del profesor Jonathan MirCha, 
 
 También escribí un artículo en Medium resumiendo el uso de Redux Toolkit para utilizarlo como guía rápida cuando se necesite recordar algo.
 
-Muchas gracias al profesor Jonathan MirCha y aquí te dejo mi artículo de Medium sobre [Redux Toolkit](https://medium.com/@angeldavidhurtado)
+Muchas gracias al profesor Jonathan MirCha y aquí te dejo mi artículo de Medium sobre [Redux Toolkit]([https://medium.com/@angeldavidhurtado](https://medium.com/@angeldavidhurtado/react-redux-toolkit-notas-para-inicio-rápido-db2610eee974))
